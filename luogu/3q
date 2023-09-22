@@ -1,0 +1,45 @@
+/*************************************************************************
+	> File Name: 4343.cpp
+	> Author:123emm 
+	> Mail: 2542142016@qq.com
+	> Created Time: Sat Jun 17 00:39:35 2023
+ ************************************************************************/
+#include<bits/stdc++.h>
+using namespace std;
+#include <iostream>
+
+int main()
+{
+    int n, k; cin >> n >> k;
+    vector<int> arr(n);
+    for (auto &x : arr) cin >> x; 
+    auto check = [&](int mid) {
+        int res = 0;
+        int tmp = 0;
+        for (int i = 0; i < n; i++) {
+            tmp += arr[i];
+            if (tmp >= mid) {
+                tmp = 0;
+                res++;
+            }
+            if (tmp < 0) tmp = 0;
+        }
+        return res >= k;
+    };
+    int left = 0, right = *max_element(arr.begin(), arr.end());
+    while (left + 1 < right) {
+        int mid = left + right >> 1;
+        if (check(mid)) left = mid;
+        else right = mid;
+    }
+    cout << left;
+    left = 0, right = *max_element(arr.begin(), arr.end());
+    while (left <= right) {
+        int mid = (left + right) >> 1;
+        if (check(mid)) left = mid + 1;
+        else right = mid - 1;
+    }
+    cout << left;
+    return 0;
+}
+

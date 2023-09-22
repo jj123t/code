@@ -1,0 +1,35 @@
+/*************************************************************************
+	> File Name: e.cpp
+	> Author:123emm 
+	> Mail: 2542142016@qq.com
+	> Created Time: Mon 10 Apr 2023 09:22:39 PM CST
+ ************************************************************************/
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main () {
+    string s; cin >> s;
+    int n = s.size();
+    int ans1 = 0;
+    int ans2 = 0;
+    for (auto c : s) {
+        ans1 += c - '0';
+        ans2 += '9' - c;
+    }
+    int ans = min(ans1, ans2);
+    cout << ans << "\n";
+    int res = 1;
+    vector<int> pfx(n + 1, 0);
+    vector<int> sfx(n + 2, 0);
+    for (int i = 0; i < n; i++) {
+        pfx[i + 1] = pfx[i] + s[i] - '0';
+    }
+    for (int i = n - 1; i > -1; i--) {
+        sfx[i] = sfx[i + 1] + s[i] - '0';
+    }
+    for (int i = 0; i < n; i++) {
+        ans = max(res + pfx[i + 1] + sfx[n - 1 - i], ans);
+    }
+    cout << ans; 
+    return 0;
+}

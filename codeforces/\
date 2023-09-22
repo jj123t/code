@@ -1,0 +1,26 @@
+/*************************************************************************
+	> File Name: test.cpp
+	> Author:123emm 
+	> Mail: 2542142016@qq.com
+	> Created Time: Sat Jun 24 02:02:10 2023
+ ************************************************************************/
+#include<bits/stdc++.h>
+using namespace std;
+#include <iostream>
+
+int main()
+{
+    int n; cin >> n;
+    vector<int> arr(n);
+    for (auto &x : arr) {
+        cin >> x;
+    }
+    int tmp = arr[0];
+    cout << tmp << " ";
+    for (int i = 1; i < n; i++) {
+        tmp |= arr[i];
+        cout << tmp << " ";
+    }
+    return 0;
+}
+

@@ -1,0 +1,32 @@
+/*************************************************************************
+	> File Name: 1828c.cpp
+	> Author:123emm 
+	> Mail: 2542142016@qq.com
+	> Created Time: Thu Jul  6 16:41:28 2023
+ ************************************************************************/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int tt; cin >> tt;
+    while (tt--) {
+        int n; cin >> n;
+        vector<int> arr(n), brr(n);
+        for (int i = 0; i < n; i++) cin >> arr[i];
+        for (int i = 0; i < n; i++) cin >> brr[i];
+        sort(arr.begin(), arr.end());
+        sort(brr.rbegin(), brr.rend());
+        int ans = 1;
+        bool flag = true;
+        for (int i = 0; i < n; i++) {
+            auto it = lower_bound(arr.begin(), arr.end(), brr[i]) - arr.begin();
+            if (it == n) flag = false;
+            int d = n - it - i;
+            ans *= d;
+        }
+        if (flag) cout << ans << "\n";
+        else cout << 0 << "\n";
+    }
+    return 0;
+}
+
